@@ -1,0 +1,14 @@
+.FormItemContext {
+  margin-bottom: 0.5rem;
+}
+
+.FormDescription {
+  color: goldenrod;
+}
+
+.FormMessage {
+  color: #C05621;
+  font-size: small;
+}
+
+/*# sourceMappingURL=form.module.css.map */

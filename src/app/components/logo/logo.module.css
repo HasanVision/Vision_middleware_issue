@@ -1,0 +1,18 @@
+.logo {
+  transition-property: background-color, border-color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  align-items: center;
+  column-gap: 0.5rem;
+  display: none;
+}
+.logo :hover {
+  opacity: 0.75;
+}
+@media (min-width: 768px) {
+  .logo {
+    display: flex;
+  }
+}
+
+/*# sourceMappingURL=logo.module.css.map */
