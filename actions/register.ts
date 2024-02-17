@@ -1,6 +1,8 @@
 "use server"
 
+import {sendEmailVerification} from "@/src/lib/mail";
 
+import {generateVerificationToken} from "@/src/lib/tokens";
 import {RegisterSchema} from "@/schemas";
 import * as z from "zod"
 
@@ -33,13 +35,19 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
             email,
             password: hashedPassword,
         }
-    })
-
-// Todo: send Verification email
+    });
 
 
+    const verificationToken = await generateVerificationToken(email);
 
-    return {success: "User Created!"}
+    await sendEmailVerification(
+        verificationToken.token,
+        verificationToken.email
+    );
+
+
+
+    return {success: "Confirmation email sent!"}
 
 
 }

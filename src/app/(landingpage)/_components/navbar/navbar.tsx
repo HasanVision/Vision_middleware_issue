@@ -13,13 +13,13 @@ export const Navbar = () => {
                 <Logo/>
                 <div >
                     <Button variant="outline">
-                        <Link href="/sing-up">
+                        <Link href="/auth/login">
                             Login
                         </Link>
 
                     </Button>
                     <Button  asChild={true}  >
-                        <Link href="/sign-up">
+                        <Link href="/auth/register">
                             Join the community
                         </Link>
 

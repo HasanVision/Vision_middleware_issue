@@ -1,3 +1,4 @@
+
 import {LoginSchema} from "@/schemas";
 
 import bcrypt from "bcrypt";
@@ -9,6 +10,7 @@ import {getUserByEmail} from "@/data/user";
 
 export default {
     providers: [
+
 
                 Credentials({
                     async authorize (credentials){
@@ -33,6 +35,6 @@ export default {
 
 
                 })
-            ]
+            ],
 
-} satisfies NextAuthConfig
+} satisfies NextAuthConfig;

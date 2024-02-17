@@ -2,7 +2,7 @@
 import styles from "./page.module.scss";
 import {Button} from "@radix-ui/themes";
 
-import { RegisterForm} from "@/src/app/components/auth/register-form";
+import { RegisterForm } from "@/src/app/components/auth/register-form";
 
 const RegisterPage = () => {
     return (
