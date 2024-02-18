@@ -4,7 +4,7 @@ import { getUserById } from "@/data/user";
 import authConfig from "./auth.config";
 import {db} from "./src/lib/db";
 
-
+import { getTwoFactorConfirmationByUserId} from "@/data/two-factor-confirmation";
 
 export const {
     handlers: { GET, POST },
@@ -33,8 +33,22 @@ export const {
             if (!existingUser?.emailVerified) {
                 return false;
 
-                // ToDo: add 2FA check
+
             }
+            if (existingUser.isTwoFactorEnabled) {
+               const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);
+
+
+               console.log({twoFactorConfirmation})
+
+
+            if (!twoFactorConfirmation) return false;
+
+               await db.twoFactorConfirmation.delete({
+                   where: {id: twoFactorConfirmation.id}
+               });
+            }
+
 
             return true;
         },

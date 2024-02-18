@@ -33,7 +33,7 @@ export const LoginForm = () => {
         ? "Email already in use with different provider!"
         : "";
 
-
+    const [showTowFactor, setShowTowFactor] = useState(false);
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
 
@@ -55,9 +55,19 @@ export const LoginForm = () => {
         startTransition(() =>{
             login(values)
                 .then ((data) => {
-                    setError(data?.error);
-                 setSuccess(data?.success);
+                   if (data?.error) {
+                       form.reset();
+                       setError(data.error);
+                   }
+                   if (data?.success) {
+                       form.reset();
+                       setSuccess(data.success)
+                   }
+                   if (data?.twoFactor) {
+                       setShowTowFactor(true);
+                   }
                 })
+                .catch(() => setError("Something went wrong!"))
         })
     }
 
@@ -72,6 +82,32 @@ export const LoginForm = () => {
                className={styles.FormNative}
                >
                    <div  className={styles.formInput}  >
+                       {showTowFactor && (
+                           <FormField
+                               control={form.control}
+                               name="code"
+                               render={({ field}) => (
+                                   <FormItem >
+                                       <FormLabel className={styles.formInput}>
+                                           Two Factor Code
+                                       </FormLabel>
+                                       <FormControl>
+
+                                           <TextField.Input
+                                               {...field}
+                                               placeholder="123456"
+                                               disabled={isPending}
+                                           />
+
+                                       </FormControl>
+                                       <FormMessage/>
+                                   </FormItem>
+
+                               ) }
+
+                           />
+                       )}
+                       { !showTowFactor &&( <>
                         <FormField
                         control={form.control}
                         name="email"
@@ -117,11 +153,13 @@ export const LoginForm = () => {
                                </FormItem>
                            ) }
                        />
+                       </>
+                       )}
                    </div>
                    <FormError message={error }/> {/*|| rulError*/}
                    <FormSuccess message={success}/>
                    <Button className={styles.LoginButton} type="submit" size="2"  disabled={isPending} >
-                       Login
+                       {showTowFactor? "Confirm" : "Login"}
                    </Button>
                </form>
            </Form>
