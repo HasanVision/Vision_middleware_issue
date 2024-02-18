@@ -41,4 +41,11 @@
   margin-left: 0.5rem;
 }
 
+.reactSpinner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
 /*# sourceMappingURL=authStyles.module.css.map */

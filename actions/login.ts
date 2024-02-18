@@ -2,6 +2,8 @@
 
 import { generateVerificationToken} from "@/src/lib/tokens";
 
+import { sendVerificationEmail} from "@/src/lib/mail";
+
 import {signIn} from "@/auth"
 import {LoginSchema} from "@/schemas";
 import * as z from "zod"
@@ -26,10 +28,20 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         return {error: "Email doesn't exist!"}
     }
 
+
+
     if ( !existingUser.emailVerified) {
         const verificationToken = await generateVerificationToken(existingUser.email);
+
+        await sendVerificationEmail(
+            verificationToken.email,
+            verificationToken.token
+        )
+
         return { success: " Confirmation email sent!"}
     }
+
+
         try {
             await signIn("credentials", {
                 email,
