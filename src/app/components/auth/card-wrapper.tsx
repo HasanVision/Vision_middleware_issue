@@ -22,7 +22,7 @@ export const CardWrapper = ({
     backButtonHref,
 } : CardWrapperProps) => {
  return (
-     <div >
+     <div>
 
 
      <Card  className = {styles.cardWrapperContainer}
