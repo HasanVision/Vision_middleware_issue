@@ -1,6 +1,6 @@
 "use server"
 
-import {sendEmailVerification} from "@/src/lib/mail";
+import {sendVerificationEmail} from "@/src/lib/mail";
 
 import {generateVerificationToken} from "@/src/lib/tokens";
 import {RegisterSchema} from "@/schemas";
@@ -40,9 +40,9 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 
     const verificationToken = await generateVerificationToken(email);
 
-    await sendEmailVerification(
-        verificationToken.token,
-        verificationToken.email
+    await sendVerificationEmail(
+        verificationToken.email,
+        verificationToken.token
     );
 
 

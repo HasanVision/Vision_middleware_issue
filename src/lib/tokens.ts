@@ -1,7 +1,7 @@
 import {v4 as uuidv4} from "uuid";
 
 import {db} from "@/src/lib/db";
-import {getVerificationTokenByToken as getVerificationTokenByEmail} from "@/data/verificationToken";
+import { getVerificationTokenByEmail} from "@/data/verificationToken";
 
 export const generateVerificationToken = async (email: string) => {
 
@@ -14,7 +14,7 @@ export const generateVerificationToken = async (email: string) => {
         await db.verificationToken.delete({
             where: {
                 id: existingToken.id
-            }
+            },
         })
     }
 
