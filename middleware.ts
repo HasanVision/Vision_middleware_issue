@@ -15,7 +15,7 @@ DEFAULT_LOGIN_REDIRECT,authRoutes,publicRoutes,apiAuthPrefix
 
 const {auth} = NextAuth(authConfig);
 
-export default auth        ((req)=> {
+export default auth    ((req)=> {
     const { nextUrl} = req;
     const isLoggedIn = !!req.auth;
 

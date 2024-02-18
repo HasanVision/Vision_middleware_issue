@@ -16,10 +16,10 @@ return (
         <h1>
             🔐 Auth
         </h1>
-        {/*<p>
+        <p>
             {label}
         </p>
-       */ }
+
     </div>
 )
 }

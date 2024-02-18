@@ -1,7 +1,7 @@
 "use client"
 import {CardWrapper} from "@/src/app/components/auth/card-wrapper";
 
-import {Button} from "@radix-ui/themes";
+import {Button, Link} from "@radix-ui/themes";
 
 import {useState, useTransition} from "react";
 
@@ -16,14 +16,23 @@ import {
 import styles from "./authStyles.module.scss";
 
 import {TextField} from "@radix-ui/themes";
+import { useSearchParams } from "next/navigation";
 
 import FormError from "@/src/app/components/formError-success/form-error";
 import FormSuccess from "@/src/app/components/formError-success/form-success";
 import {login} from "@/actions/login";
+//import Link from "next/link";
 
 
 
 export const LoginForm = () => {
+
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get("callbackUrl");
+    const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
+        ? "Email already in use with different provider!"
+        : "";
+
 
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
@@ -56,7 +65,7 @@ export const LoginForm = () => {
         <CardWrapper
             headerLabel="Welcome back"
             backButtonLabel="New to VisionX? Creacte and account"
-            backButtonHref="/register"
+            backButtonHref="/auth/register"
         >
            <Form {...form}>
                <form onSubmit={form.handleSubmit(onSubmit)}
@@ -99,12 +108,17 @@ export const LoginForm = () => {
                                    <FormControl>
                                        <TextField.Input {...field} placeholder="******" type="password"/>
                                    </FormControl>
+
+                                       <Link  href="/auth/reset">
+                                           Forgot password?
+                                       </Link>
+
                                    <FormMessage/>
                                </FormItem>
                            ) }
                        />
                    </div>
-                   <FormError message={error}/>
+                   <FormError message={error }/> {/*|| rulError*/}
                    <FormSuccess message={success}/>
                    <Button className={styles.LoginButton} type="submit" size="2"  disabled={isPending} >
                        Login
