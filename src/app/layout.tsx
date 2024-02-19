@@ -7,6 +7,9 @@ import {Theme, ThemePanel} from "@radix-ui/themes"
 import React from "react";
 import {siteConfig} from "@/src/config/site";
 
+import{SessionProvider} from "next-auth/react";
+import {auth} from "@/auth"
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,12 +28,17 @@ export const metadata: Metadata = {
 
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+    const session = await auth();
   return (
+      <SessionProvider session={session}>
+
+
     <html lang="en">
       <body className={inter.className}>
       <Theme  appearance="dark">
@@ -38,5 +46,6 @@ export default function RootLayout({
       </Theme>
       </body>
     </html>
+      </SessionProvider>
   );
 }

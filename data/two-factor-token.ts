@@ -1,15 +1,11 @@
-
-
 import {db} from "@/src/lib/db";
 
 
 export const getTwoFactorTokenByToken = async (token: string) => {
     try {
-        const twoFactoToken = await db.twoFactorToken.findUnique({
-            where: { token }
-        })
-
-        return twoFactoToken;
+        return await db.twoFactorToken.findUnique({
+            where: {token}
+        });
     } catch {
         return null;
     }
@@ -18,11 +14,9 @@ export const getTwoFactorTokenByToken = async (token: string) => {
 
 export const getTwoFactorTokenByEmail = async (email: string) => {
     try {
-        const twoFactoToken = await db.twoFactorToken.findFirst({
-            where: { email }
-        })
-
-        return twoFactoToken;
+        return await db.twoFactorToken.findFirst({
+            where: {email}
+        });
     } catch {
         return null;
     }

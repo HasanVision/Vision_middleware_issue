@@ -1,24 +1,25 @@
+"use client"
 
-import { auth, signOut} from "@/auth";
+import styles from "./page.module.css"
+import {useSession} from "next-auth/react";
+import {logout} from "@/actions/logout";
+import {useCurrentUser} from "@/hooks/use-current-user";
+import {Navbar} from "@/src/app/(portected)/_components/navbar";
 
+const SettingsPage=   () => {
 
-const SettingsPage= async  () => {
+    const user = useCurrentUser();
 
-    const session = await auth();
-
-
+const onClick = () => {
+    logout();
+}
 
     return(
-        <div>
-            {JSON.stringify(session)}
-            <form action={async () => {
-                "use server";
-                await signOut();
-            }}>
-                <button type="submit">
+        <div className={styles.ProtectedLayoutStyle}>
+            <Navbar/>
+                <button onClick={onClick} type="submit">
                     Sign out
                 </button>
-            </form>
         </div>
     )
 }
