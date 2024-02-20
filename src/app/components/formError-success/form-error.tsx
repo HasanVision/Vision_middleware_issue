@@ -6,7 +6,7 @@ import {Text, Callout} from "@radix-ui/themes";
 import styles from "./form-error-success.module.css";
 interface FormErrorProps {
     message?: string;
-};
+}
 
 const FormError = ({
     message,}: FormErrorProps) => {

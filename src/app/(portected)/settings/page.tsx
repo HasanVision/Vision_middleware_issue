@@ -1,25 +1,25 @@
 "use client"
 
-import styles from "./page.module.css"
-import {useSession} from "next-auth/react";
+import styles from "../settings.module.css"
 import {logout} from "@/actions/logout";
 import {useCurrentUser} from "@/hooks/use-current-user";
-import {Navbar} from "@/src/app/(portected)/_components/navbar";
+import {Container} from "@radix-ui/themes";
+import {CardWrapper} from "@/src/app/auth/authComponents/card-wrapper";
 
-const SettingsPage=   () => {
+const SettingsPage = () => {
 
     const user = useCurrentUser();
 
-const onClick = () => {
-    logout();
-}
+    const onClick = () => {
+        logout();
+    }
 
-    return(
-        <div className={styles.ProtectedLayoutStyle}>
-            <Navbar/>
+    return (
+        <div >
                 <button onClick={onClick} type="submit">
                     Sign out
                 </button>
+
         </div>
     )
 }

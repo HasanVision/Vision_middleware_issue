@@ -1,10 +1,10 @@
 "use client"
 
-import styles from "./authStyles.module.scss";
+import styles from "./authComponents.module.scss";
 
 import {useCallback, useEffect, useState} from "react";
 
-import {CardWrapper} from "@/src/app/components/auth/card-wrapper";
+import {CardWrapper} from "@/src/app/auth/authComponents/card-wrapper";
 import { useSearchParams} from "next/navigation";
 import { BeatLoader} from "react-spinners";
 import { newVerification} from "@/actions/new-verification";

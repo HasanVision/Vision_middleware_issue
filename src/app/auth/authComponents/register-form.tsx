@@ -1,5 +1,5 @@
 "use client"
-import {CardWrapper} from "@/src/app/components/auth/card-wrapper";
+import {CardWrapper} from "@/src/app/auth/authComponents/card-wrapper";
 
 import {Button} from "@radix-ui/themes";
 
@@ -11,9 +11,9 @@ import { zodResolver} from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
     Form, FormControl, FormField, FormItem, FormLabel, FormMessage
-} from "../form/form"
+} from "../../components/form/form"
 
-import styles from "./authStyles.module.scss";
+import styles from "./authComponents.module.scss";
 
 import {Text, TextField} from "@radix-ui/themes";
 
@@ -55,20 +55,20 @@ export const RegisterForm = () => {
     return (
         <CardWrapper
             headerLabel="Create an acount"
-            backButtonLabel="Already have an account? Login"
+            backButtonLabel="Already have an accout? Login"
             backButtonHref="/auth/login"
         >
            <Form {...form}>
                <form onSubmit={form.handleSubmit(onSubmit)}
-               className={styles.FormNative}
+
                >
-                   <div  className={styles.formInput}  >
+                   <div    >
                        <FormField
                            control={form.control}
                            name="name"
                            render={({ field}) => (
                                <FormItem >
-                                   <FormLabel className={styles.formInput}>
+                                   <FormLabel >
                                        Name
                                    </FormLabel>
                                    <FormControl>
@@ -91,7 +91,7 @@ export const RegisterForm = () => {
                         name="email"
                         render={({ field}) => (
                             <FormItem >
-                                <FormLabel className={styles.formInput}>
+                                <FormLabel >
                                     Email
                                 </FormLabel>
                                 <FormControl>
@@ -129,9 +129,11 @@ export const RegisterForm = () => {
                    </div>
                    <FormError message={error}/>
                    <FormSuccess message={success}/>
-                   <Button className={styles.LoginButton} type="submit" size="2"  disabled={isPending} >
+
+                   <Button className={styles.LoginButtonLoginForm} type="submit" size="2"  disabled={isPending} >
                        Create an account
                    </Button>
+
                </form>
            </Form>
         </CardWrapper>

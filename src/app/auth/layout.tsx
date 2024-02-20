@@ -1,5 +1,7 @@
 import React from "react";
-import {Footer} from "@/src/app/(landingpage)/_components/footer/footer";
+import {Footer} from "@/src/app/(landingpage)/_components/footer";
+
+import styles from "./auth.module.scss"
 
 const LoginLayout = ({
     children
@@ -7,7 +9,7 @@ const LoginLayout = ({
     children: React.ReactNode;
 }) => {
     return(
-          <div>
+          <div className={styles.authLayout}>
             {children}
               <Footer/>
         </div>

@@ -6,11 +6,12 @@ import {usePathname} from "next/navigation";
 import {UserButton} from "@/src/app/auth/authComponents/user-button";
 
 //import {Button} from "@radix-ui/themes"
-export const Navbar = () => {
+export const NavbarSettings = () => {
 
     const pathname = usePathname();
     return (
-        <nav className={styles.Navbar}>
+<div className={styles.Navbar}>
+        <nav className={styles.Navbar}  >
             <div>
                 <Button asChild variant={pathname === "/settings" ? "classic" : "outline"}>
                     <Link href="/settings">
@@ -35,8 +36,11 @@ export const Navbar = () => {
                     </Link>
                 </Button>
             </div>
-            <UserButton/>
+            <div>
+                <UserButton/>
+            </div>
         </nav>
+</div>
     )
 }
 

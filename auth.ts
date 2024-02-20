@@ -1,8 +1,13 @@
+
+
+
 import NextAuth from "next-auth"
 import { PrismaAdapter} from "@auth/prisma-adapter";
 import { getUserById } from "@/data/user";
 import authConfig from "./auth.config";
 import {db} from "./src/lib/db";
+
+import {UserRole} from "@prisma/client";
 
 import { getTwoFactorConfirmationByUserId} from "@/data/two-factor-confirmation";
 
@@ -12,6 +17,11 @@ export const {
     signIn,
     signOut,
 } = NextAuth({
+
+pages: {
+    signIn: "/authComponents/login",
+        error: "/authComponents/error",
+},
 
     events: {
         async linkAccount({user}) {
@@ -60,7 +70,7 @@ export const {
             }
 
             if (token.role && session.user) {
-                session.user.role = token.role as "ADMIN" | "USER";
+                session.user.role = token.role as UserRole;
             }
           return session;
         },
@@ -72,9 +82,12 @@ export const {
 
             if (!existingUser) return token;
 
+
             token.role = existingUser.role;
 
           return token;
+
+
       }
     },
     adapter: PrismaAdapter(db),

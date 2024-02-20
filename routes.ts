@@ -5,7 +5,7 @@
  */
 export const publicRoutes = [
     "/",
-    "/auth/new-verification"
+    "/authComponents/new-verification"
 ];
 
 /**
@@ -14,11 +14,11 @@ export const publicRoutes = [
  * @type {string[]}
  */
 export const authRoutes = [
-    "/auth/login",
-    "/auth/register",
-    "/auth/error",
-    "/auth/reset",
-    "/auth/new-password"
+    "/authComponents/login",
+    "/authComponents/register",
+    "/authComponents/error",
+    "/authComponents/reset",
+    "/authComponents/new-password"
 ];
 
 /**
@@ -26,7 +26,7 @@ export const authRoutes = [
  * Routes that start with this prefix are used for API authentication purposes
  * @type {string}
  */
-export const apiAuthPrefix = "/api/auth";
+export const apiAuthPrefix = "/api/authComponents";
 
 /**
  * The default redirect path after logging in

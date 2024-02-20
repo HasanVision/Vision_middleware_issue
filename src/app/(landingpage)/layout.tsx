@@ -1,5 +1,5 @@
-import {Navbar} from "@/src/app/(landingpage)/_components/navbar/navbar";
-import {Footer} from "@/src/app/(landingpage)/_components/footer/footer";
+import {Navbar} from "@/src/app/(landingpage)/_components/navbar";
+import {Footer} from "@/src/app/(landingpage)/_components/footer";
 
 const LandingPageLayout =  ({
     children

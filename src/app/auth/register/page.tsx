@@ -1,14 +1,10 @@
-
-import styles from "./page.module.scss";
-import {Button} from "@radix-ui/themes";
-
-import { RegisterForm } from "@/src/app/components/auth/register-form";
+import {RegisterForm} from "@/src/app/auth/authComponents/register-form";
 
 const RegisterPage = () => {
     return (
-        <main  className={styles.LoginMain}>
-                <RegisterForm/>
-        </main>
+
+        <RegisterForm/>
+
     )
 }
 
